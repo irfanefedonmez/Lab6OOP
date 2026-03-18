@@ -1,5 +1,6 @@
 package atu.ie.week8_reservations.service;
 
+
 import atu.ie.week8_reservations.exception.ReservationConflictException;
 import atu.ie.week8_reservations.exception.ReservationNotFoundException;
 import atu.ie.week8_reservations.model.Reservation;
@@ -20,7 +21,7 @@ public class ReservationService {
 
         for (Reservation existing : reservations) {
             boolean sameEquipment = existing.getEquipmentTag().equalsIgnoreCase(reservation.getEquipmentTag());
-            boolean sameDate = existing.getReservationDate().equals(reservation.getReservationDate());
+            boolean sameDate = existing.getRezervationDate().equals(reservation.getRezervationDate());
 
             int existingStart = existing.getStartHour();
             int existingEnd = existing.getStartHour() + existing.getDurationHours();
@@ -32,7 +33,7 @@ public class ReservationService {
             }
         }
 
-        reservation.setReservationId(nextId++);
+        reservation.setRezervationId(nextId++);
         reservations.add(reservation);
         return reservation;
     }
@@ -43,7 +44,7 @@ public class ReservationService {
 
     public Reservation getReservationById(Long id) {
         for (Reservation reservation : reservations) {
-            if (reservation.getReservationId().equals(id)) {
+            if (id.equals(reservation.getRezervationId())) {
                 return reservation;
             }
         }
